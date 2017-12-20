@@ -8,12 +8,12 @@ import java.util.concurrent.FutureTask;
  * @author Helvetica
  *
  */
-public class CallableTest implements Callable<Integer>{
+public class CallableTestSyn implements Callable<Integer>{
 
 	public static void main(String[] args) {
 
 		// 创建 CallableTest 对象
-		Callable<Integer> myCallable = new CallableTest(); 
+		Callable<Integer> myCallable = new CallableTestSyn(); 
 		
 		// 使用FutureTask来包装MyCallable对象
 		FutureTask<Integer> ft1 = new FutureTask<Integer>(myCallable); 
