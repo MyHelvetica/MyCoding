@@ -1,6 +1,7 @@
 package org.callable;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
 /**
@@ -8,18 +9,18 @@ import java.util.concurrent.FutureTask;
  * @author Helvetica
  *
  */
-public class CallableTestSyn implements Callable<Integer>{
+public class CallableTestSyn implements Callable<String>{
 
 	public static void main(String[] args) {
 
 		// 创建 CallableTest 对象
-		Callable<Integer> myCallable = new CallableTestSyn(); 
+		Callable<String> myCallable = new CallableTestSyn(); 
 		
 		// 使用FutureTask来包装MyCallable对象
-		FutureTask<Integer> ft1 = new FutureTask<Integer>(myCallable); 
+		FutureTask<String> ft1 = new FutureTask<String>(myCallable); 
 		
 		// 使用FutureTask来包装MyCallable对象
-		FutureTask<Integer> ft2 = new FutureTask<Integer>(myCallable); 
+		FutureTask<String> ft2 = new FutureTask<String>(myCallable); 
 		
 		/* 不要显示创建线程，请使用线程池。 */
 		Thread aThread = new Thread(ft1);
@@ -27,11 +28,21 @@ public class CallableTestSyn implements Callable<Integer>{
 		
 		aThread.start();
 		bThread.start();
+		try {
+			System.out.println(ft1.get());
+			System.out.println(ft2.get());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 
 	@Override
-	public Integer call() throws Exception {
+	public String call() throws Exception {
 		synchronized (this) {
 			/* 尽量不要使用魔法值 */
 			for (int index = 0; index < 30; index++) {
@@ -41,6 +52,6 @@ public class CallableTestSyn implements Callable<Integer>{
 						+ index);
 			}
 		}
-		return null;
+		return Thread.currentThread().getName() + "OK";
 	}
 }
