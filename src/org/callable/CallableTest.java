@@ -12,9 +12,14 @@ public class CallableTest implements Callable<Integer>{
 
 	public static void main(String[] args) {
 
-		Callable<Integer> myCallable = new CallableTest(); // 创建 CallableTest 对象
-		FutureTask<Integer> ft1 = new FutureTask<Integer>(myCallable); // 使用FutureTask来包装MyCallable对象
-		FutureTask<Integer> ft2 = new FutureTask<Integer>(myCallable); // 使用FutureTask来包装MyCallable对象
+		// 创建 CallableTest 对象
+		Callable<Integer> myCallable = new CallableTest(); 
+		
+		// 使用FutureTask来包装MyCallable对象
+		FutureTask<Integer> ft1 = new FutureTask<Integer>(myCallable); 
+		
+		// 使用FutureTask来包装MyCallable对象
+		FutureTask<Integer> ft2 = new FutureTask<Integer>(myCallable); 
 		
 		/* 不要显示创建线程，请使用线程池。 */
 		Thread aThread = new Thread(ft1);
@@ -38,5 +43,4 @@ public class CallableTest implements Callable<Integer>{
 		}
 		return null;
 	}
-
 }
