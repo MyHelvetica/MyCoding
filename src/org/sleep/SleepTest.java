@@ -1,7 +1,7 @@
 package org.sleep;
 
 /**
- * 多个线程随机调用
+ * Sleep 测试
  * @author Helvetica
  *
  */
