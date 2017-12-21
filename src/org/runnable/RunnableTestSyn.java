@@ -1,7 +1,7 @@
 package org.runnable;
 
 /**
- * 多个线程随机调用
+ * 多个线程随机调用 线程安全
  * @author Helvetica
  *
  */
