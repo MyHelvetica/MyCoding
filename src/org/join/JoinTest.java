@@ -1,7 +1,7 @@
 package org.join;
 
 /**
- * 多个线程随机调用
+ * Join 测试
  * @author Helvetica
  *
  */
