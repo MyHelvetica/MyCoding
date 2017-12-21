@@ -12,16 +12,18 @@ public class NotifyProduceTest implements Runnable{
 	public void run() {
 		while(true) {
 			synchronized (aStorage) {
-				if (aStorage.getNum() == 10) {
+				if (aStorage.num == 10) {
 					try {
 						aStorage.wait();
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
-				aStorage.setNum(10);
-				aStorage.notifyAll();
-				System.out.println("满了");
+				if (aStorage.num == 9) {
+					aStorage.notifyAll();
+				}
+				aStorage.num++;
+				System.out.println(Thread.currentThread().getName() + ":" + aStorage.num);
 			}
 		}
 	}

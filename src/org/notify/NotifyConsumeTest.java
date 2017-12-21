@@ -12,16 +12,18 @@ public class NotifyConsumeTest implements Runnable{
 	public void run() {
 		while(true) {
 			synchronized (aStorage) {
-				if (aStorage.getNum() == 0) {
+				if (aStorage.num == 0) {
 					try {
 						aStorage.wait();
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 				}
-				aStorage.setNum(0);
-				aStorage.notifyAll();
-				System.out.println("没有了");
+				if (aStorage.num == 1) {
+					aStorage.notifyAll();
+				}
+				aStorage.num--;
+				System.out.println(Thread.currentThread().getName() + ":" + aStorage.num);
 			}
 		}
 	}
