@@ -1,7 +1,7 @@
 package org.thread;
 
 /**
- * Thread 多线程
+ * Thread 多线程 线程安全
  * @author Helvetica
  *
  */
